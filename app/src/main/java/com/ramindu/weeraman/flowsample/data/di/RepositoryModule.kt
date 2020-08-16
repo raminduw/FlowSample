@@ -14,5 +14,5 @@ abstract class RepositoryModule {
 
     @Singleton
     @Binds
-    abstract fun bindUserDataRepository(impl: DogRepositoryImpl): DogRepository
+    abstract fun bindDogDataRepository(impl: DogRepositoryImpl): DogRepository
 }
