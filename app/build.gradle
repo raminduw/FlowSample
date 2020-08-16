@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.0"
+
+    defaultConfig {
+        applicationId "com.ramindu.weeraman.flowsample"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+
+    implementation "androidx.appcompat:appcompat:$appCompat"
+    implementation "androidx.core:core-ktx:$coreKtx"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigationKtx"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigationKtx"
+    implementation "com.lsjwzh:materialloadingprogressbar:$materialLoadingProgressbar"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$architectureComponents"
+    implementation "androidx.fragment:fragment-ktx:$fragmentKtx"
+    implementation "androidx.lifecycle:lifecycle-extensions:$architectureComponents"
+
+    //ViewModel & LiveData
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$architectureComponents"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$architectureComponents"
+
+    implementation "io.arrow-kt:arrow-core-data:$arrowCoreData"
+
+    //Zxing
+    implementation "com.google.zxing:core:$zxingCoreVersion"
+    implementation "com.journeyapps:zxing-android-embedded:$zxingJourneyApps"
+
+    //design libs
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hiltAndroid"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltAndroid"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hiltViewModel"
+    kapt "androidx.hilt:hilt-compiler:$hiltViewModel"
+
+    //networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3LogInterceptor"
+
+    //testing
+    testImplementation "junit:junit:$jUnit"
+    androidTestImplementation "androidx.test:runner:$testRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCore"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoVersion"
+    testImplementation "android.arch.core:core-testing:$architectureComponents"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    androidTestImplementation "androidx.test.ext:junit:$extJunit"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiter"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiter"
+    testImplementation  "org.junit.vintage:junit-vintage-engine:$junitJupiter"
+    testImplementation  "com.google.truth:truth:$googleTurth"
+    testImplementation  "io.mockk:mockk:$mockK"
+
+}
