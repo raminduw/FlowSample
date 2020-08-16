@@ -7,10 +7,7 @@ import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class DogRepositoryImpl @Inject constructor(
-    private val dogApi: DogApi,
-    private val dispatcher: CoroutineDispatcher
-) : DogRepository {
+class DogRepositoryImpl @Inject constructor(private val dogApi: DogApi,private val dispatcher: CoroutineDispatcher) : DogRepository {
 
     @ExperimentalCoroutinesApi
     override suspend fun getBreedList(): Flow<String> {
