@@ -6,6 +6,7 @@ import javax.inject.Inject
 
 class GetBreedListUseCaseImpl @Inject constructor(private val dogRepository: DogRepository) :
     GetBreedListUseCase {
+
     override suspend fun retrieveBreedList(): Flow<String> {
         return dogRepository.getBreedList()
     }
