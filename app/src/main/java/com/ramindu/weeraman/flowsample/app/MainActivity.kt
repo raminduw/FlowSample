@@ -33,15 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenCreated {
             breedViewModel.getAllBreeds().onStart {
-                Log.d("TAG", "DOG Name : START")
-                progressBar_cyclic.visibility = VISIBLE
+                progressBar.visibility = VISIBLE
             }.catch {
-                Log.d("TAG", "DOG Name : ERROR")
-                progressBar_cyclic.visibility = GONE
+                progressBar.visibility = GONE
             }.onCompletion {
-                progressBar_cyclic.visibility = GONE
+                progressBar.visibility = GONE
             }.collect {
-                Log.d("TAG", "DOG Name : $it")
+                Log.d("TAG", "DOG Name : ${it.name}")
             }
         }
     }
