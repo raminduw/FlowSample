@@ -1,23 +1,22 @@
 package com.ramindu.weeraman.flowsample.app
 
-import androidx.appcompat.app.AppCompatActivity
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ramindu.weeraman.flowsample.R
 import com.ramindu.weeraman.flowsample.domain.GetBreedListUseCase
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -35,10 +34,12 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenCreated {
             breedViewModel.getAllBreeds().onStart {
                 Log.d("TAG", "DOG Name : START")
+                progressBar_cyclic.visibility = VISIBLE
             }.catch {
                 Log.d("TAG", "DOG Name : ERROR")
+                progressBar_cyclic.visibility = GONE
             }.onCompletion {
-                Log.d("TAG", "DOG Name : END")
+                progressBar_cyclic.visibility = GONE
             }.collect {
                 Log.d("TAG", "DOG Name : $it")
             }
