@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.ramindu.weeraman.flowsample.R
+import com.ramindu.weeraman.flowsample.data.model.Dog
 import com.ramindu.weeraman.flowsample.domain.GetBreedListUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
@@ -38,15 +39,14 @@ class MainActivity : AppCompatActivity() {
                 progressBar.visibility = GONE
             }.onCompletion {
                 progressBar.visibility = GONE
-                test()
-            }.collect { dogName ->
-                Log.d("TAG", "DOG Name : ${dogName.name}")
-                dogList.add(dogName.name)
+            }.collect { dog ->
+                updateList(dog)
             }
         }
     }
 
-    private fun test() {
+    private fun updateList(dog: Dog) {
+        dogList.add(dog.name)
         recyclerViewDogs.withModels {
             dogList.forEach {
                 dogModel {

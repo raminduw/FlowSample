@@ -19,7 +19,7 @@ class DogRepositoryImpl @Inject constructor(
         val apiResponse = dogApi.getAllBreeds()
 
         return apiResponse.message.keys.toList().asFlow().onEach {
-            delay(25) }.map {
+            delay(100) }.map {
             dogeMapper.transform(it)
         }.flowOn(dispatcher)
     }
