@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.airbnb.epoxy.ModelProp
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
 import com.ramindu.weeraman.flowsample.R
@@ -26,7 +25,7 @@ class DogModel @JvmOverloads constructor(
     init {
         val root = LayoutInflater
             .from(context)
-            .inflate(R.layout.list_item, this, false)
+            .inflate(R.layout.item, this, false)
         addView(root)
         name = findViewById(R.id.dogName)
 
