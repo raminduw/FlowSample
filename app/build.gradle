@@ -32,6 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    viewBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -92,4 +96,12 @@ dependencies {
     testImplementation  "com.google.truth:truth:$googleTurth"
     testImplementation  "io.mockk:mockk:$mockK"
 
+    implementation 'com.airbnb.android:epoxy:4.0.0-beta6'
+    // Add the annotation processor if you are using Epoxy's annotations (recommended)
+    kapt 'com.airbnb.android:epoxy-processor:4.0.0-beta6'
+
+}
+
+kapt {
+    correctErrorTypes = true
 }

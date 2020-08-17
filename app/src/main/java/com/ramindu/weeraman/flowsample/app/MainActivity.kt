@@ -1,6 +1,5 @@
 package com.ramindu.weeraman.flowsample.app
 
-import android.app.ProgressDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
@@ -13,7 +12,6 @@ import com.ramindu.weeraman.flowsample.domain.GetBreedListUseCase
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
@@ -25,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var getBreedListUseCase: GetBreedListUseCase
+
+    var dogList: MutableList<String> = mutableListOf()
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +38,21 @@ class MainActivity : AppCompatActivity() {
                 progressBar.visibility = GONE
             }.onCompletion {
                 progressBar.visibility = GONE
-            }.collect {
-                Log.d("TAG", "DOG Name : ${it.name}")
+                test()
+            }.collect { dogName ->
+                Log.d("TAG", "DOG Name : ${dogName.name}")
+                dogList.add(dogName.name)
+            }
+        }
+    }
+
+    private fun test() {
+        recyclerViewDogs.withModels {
+            dogList.forEach {
+                dogModel {
+                    id(it)
+                    name(it)
+                }
             }
         }
     }
