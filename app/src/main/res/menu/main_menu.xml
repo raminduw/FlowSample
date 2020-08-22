@@ -4,6 +4,6 @@
     <item
         android:id="@+id/action_update"
         app:showAsAction="always"
-        android:title="UPDATE">
+        android:title="REFRESH">
     </item>
 </menu>
