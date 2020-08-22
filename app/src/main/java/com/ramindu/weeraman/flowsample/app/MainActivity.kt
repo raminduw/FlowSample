@@ -26,9 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     private val breedViewModel: BreedViewModel by viewModels()
 
-    @Inject
-    lateinit var getBreedListUseCase: GetBreedListUseCase
-
     private var dogList: MutableList<String> = mutableListOf()
 
     @ExperimentalCoroutinesApi
@@ -69,7 +66,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
     }
@@ -77,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     @ExperimentalCoroutinesApi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
-        return when (item.getItemId()) {
+        return when (item.itemId) {
             R.id.action_update -> {
                 loadData()
                 true
