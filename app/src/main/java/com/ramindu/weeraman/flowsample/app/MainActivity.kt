@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var getBreedListUseCase: GetBreedListUseCase
 
-    var dogList: MutableList<String> = mutableListOf()
+    private var dogList: MutableList<String> = mutableListOf()
 
     @ExperimentalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
