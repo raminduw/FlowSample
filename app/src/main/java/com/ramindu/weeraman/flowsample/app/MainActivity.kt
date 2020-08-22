@@ -35,10 +35,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         loadData()
     }
 
+    @ExperimentalCoroutinesApi
     private fun loadData(){
         dogList.clear()
         recyclerViewDogs.clear()
@@ -74,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    @ExperimentalCoroutinesApi
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         return when (item.getItemId()) {
